@@ -15,3 +15,6 @@ export * from './notifications';
 
 // Layout Components
 export * from './footer';
+
+// Calendar Components
+export * from './calendar';

@@ -1,14 +1,15 @@
 import { AppRouter } from './routes/AppRouter';
 import { RecruitmentFormProvider } from './context/FormContext';
+import { NotificationProvider } from './components/notifications/NotificationContext';
 
 function App() {
 
   return (
-    <RecruitmentFormProvider>
-      
+    <NotificationProvider>
+      <RecruitmentFormProvider>
         <AppRouter />
-
-    </RecruitmentFormProvider>
+      </RecruitmentFormProvider>
+    </NotificationProvider>
   );
 }
 

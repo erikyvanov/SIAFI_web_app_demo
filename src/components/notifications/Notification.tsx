@@ -69,6 +69,7 @@ export const Notification: React.FC<NotificationProps> = ({
           <span className="font-bold">
             {title}
           </span>
+          <br />
           <span className="font-medium">
             {message}
           </span>
