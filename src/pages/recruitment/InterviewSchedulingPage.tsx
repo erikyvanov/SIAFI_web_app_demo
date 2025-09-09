@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
+import { useWindowSize } from "react-use";
 
 import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
+import Confetti from "react-confetti";
 
 import { Calendar, TimeSlots } from "../../components/calendar";
 import { Button } from "../../components/ui";
@@ -25,6 +27,7 @@ import {
   formatConfirmedDateTime,
   formatDateInMexicoCityTime,
 } from "../../utils/DateTimeUtils";
+import { CheckCircleIcon } from "../../components";
 
 // Animation variants
 const containerVariants = {
@@ -75,6 +78,7 @@ const DAY_NAMES: Record<number, DayOfWeek> = {
 };
 
 export function InterviewSchedulingPage() {
+  const { width, height } = useWindowSize();
   const [searchParams] = useSearchParams();
   //const navigate = useNavigate();
   const toast = useToast();
@@ -134,7 +138,7 @@ export function InterviewSchedulingPage() {
       window.scrollTo({
         top: 0,
         left: 0,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
   }, [appointmentConfirmed]);
@@ -335,10 +339,12 @@ export function InterviewSchedulingPage() {
       setConfirmedAppointment(appointmentData);
       setAppointmentConfirmed(true);
 
+      /*
       toast.success({
         title: "¡Entrevista agendada exitosamente!",
         message: "Tu cita ha sido confirmada. Revisa los detalles abajo.",
       });
+      */
     } catch (error) {
       console.error("Error scheduling appointment:", error);
       toast.error({
@@ -578,7 +584,7 @@ export function InterviewSchedulingPage() {
   if (!user || !event || !weeklySchedule) {
     return (
       <div className="bg-siafi-surface flex flex-col items-center justify-center min-h-screen py-16 px-4">
-        <div className="text-center max-w-md flex flex-col items-center justify-center">
+        <div className="text-center max-w-lg flex flex-col items-center justify-center">
           <div className="text-red-500 mb-4">
             <svg
               className="mx-auto h-12 w-12"
@@ -595,11 +601,12 @@ export function InterviewSchedulingPage() {
             </svg>
           </div>
           <h2 className="text-siafi-h3 text-siafi-on-surface mb-2">
-            Error al cargar
+            Error al cargar los datos
           </h2>
           <p className="text-siafi-body text-gray-600 mb-6">
-            No se pudieron cargar los datos necesarios. Por favor verifica tu
-            enlace e intenta de nuevo.
+            No se pudieron cargar los datos necesarios o ya agendaste tu
+            entrevista. En caso de que aún no hayas agendado tu entrevista, por
+            favor, verifica tu enlace e intenta de nuevo.
           </p>
           <Button variant="primary" onClick={() => window.location.reload()}>
             Reintentar
@@ -618,6 +625,13 @@ export function InterviewSchedulingPage() {
         variants={containerVariants}
       >
         <div className="w-full max-w-5xl text-center">
+          <Confetti
+            width={width}
+            height={height}
+            recycle={false}
+            numberOfPieces={200}
+            gravity={0.1}
+          />
           <motion.div
             className="flex justify-center mb-6"
             variants={itemVariants}
@@ -640,19 +654,7 @@ export function InterviewSchedulingPage() {
                 damping: 15,
               }}
             >
-              <svg
-                className="mx-auto h-16 w-16"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
+              <CheckCircleIcon className="w-24 h-24 text-siafi-success mx-auto mb-6" />
             </motion.div>
 
             <h1 className="text-siafi-h2 text-siafi-on-surface mb-3">
