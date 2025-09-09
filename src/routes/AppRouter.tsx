@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from "react-router-dom";
-import { RecruitmentFormProvider } from "../context/FormContext";
 import { AnimatePresence } from "framer-motion";
 import { WelcomePage } from "../pages/recruitment/WelcomePage";
 import { PersonalDataPage } from "../pages/recruitment/PersonalDataPage";
@@ -8,6 +7,7 @@ import { TechnicalSkillsPage } from "../pages/recruitment/TechnicalSkillsPage";
 import { ExperienceAndTrackRecordPage } from "../pages/recruitment/ExperienceAndTrackRecordPage";
 import { MotivationAndExpectationsPage } from "../pages/recruitment/MotivationAndExpectationsPage";
 import { ThankYouPage } from "../pages/recruitment/ThankYouPage";
+import { InterviewSchedulingPage } from "../pages/recruitment/InterviewSchedulingPage";
 import { RecruitmentLayout } from "../layouts/RecruitmentLayout"; 
 import { ScrollToTop } from "../utils/ScrollToTop";
 import { PageTransition } from "../components/ui";
@@ -28,6 +28,7 @@ function AnimatedRoutes() {
           <Route path="/reclutamiento/motivacion-y-expectativas" element={<PageTransition><MotivationAndExpectationsPage /></PageTransition>} />
         </Route>
         <Route path="/reclutamiento/gracias" element={<PageTransition><ThankYouPage /></PageTransition>} />
+        <Route path="/agendar-entrevista" element={<InterviewSchedulingPage />} />
         
         <Route path="*" element={<Navigate to="/reclutamiento" replace />} />
       </Routes>
@@ -38,10 +39,8 @@ function AnimatedRoutes() {
 export function AppRouter() {
   return (
     <Router>
-      <RecruitmentFormProvider>
-        <ScrollToTop />
-        <AnimatedRoutes />
-      </RecruitmentFormProvider>
+      <ScrollToTop />
+      <AnimatedRoutes />
     </Router>
   );
 }

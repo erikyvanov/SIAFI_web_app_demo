@@ -4,3 +4,5 @@ export { PreferencesAndParticipationPage } from './PreferencesAndParticipationPa
 export { TechnicalSkillsPage } from './TechnicalSkillsPage'
 export { ExperienceAndTrackRecordPage } from './ExperienceAndTrackRecordPage'
 export { MotivationAndExpectationsPage } from './MotivationAndExpectationsPage'
+export { ThankYouPage } from './ThankYouPage'
+export { InterviewSchedulingPage } from './InterviewSchedulingPage'

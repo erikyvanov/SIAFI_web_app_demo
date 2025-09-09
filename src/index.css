@@ -115,4 +115,103 @@
   /* Font family utilities */
   .font-siafi-poppins { font-family: var(--font-poppins); }
   .font-siafi-inter { font-family: var(--font-inter); }
+  
+  /* Loading animations */
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(15px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  /* Tamaños personalizados para anillos */
+  .w-18 { width: 4.5rem; }
+  .h-18 { height: 4.5rem; }
+  
+  /* Borde personalizado */
+  .border-3 { border-width: 3px; }
+  
+  /* Nuevas animaciones para elementos de fondo */
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+  
+  .animate-bounce-slow {
+    animation: bounceSlow 3s ease-in-out infinite;
+  }
+  
+  .animate-rotate-slow {
+    animation: rotateSlow 8s linear infinite;
+  }
+  
+  .animate-twinkle {
+    animation: twinkle 2s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px) translateX(0px);
+    }
+    25% {
+      transform: translateY(-10px) translateX(5px);
+    }
+    50% {
+      transform: translateY(0px) translateX(-5px);
+    }
+    75% {
+      transform: translateY(5px) translateX(3px);
+    }
+  }
+  
+  @keyframes bounceSlow {
+    0%, 100% {
+      transform: translateY(0);
+      opacity: 0.6;
+    }
+    50% {
+      transform: translateY(-15px);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes rotateSlow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes twinkle {
+    0%, 100% {
+      opacity: 0.1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1.2);
+    }
+  }
+  
+  /* Bordes para triángulos */
+  .border-b-14 { border-bottom-width: 14px; }
+  .border-b-10 { border-bottom-width: 10px; }
+  
+  /* Formas hexagonales */
+  .hexagon {
+    clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+  }
+  
+  /* Más utilidades de tamaño */
+  .w-0\.5 { width: 0.125rem; }
+  .h-0\.5 { height: 0.125rem; }
 }
