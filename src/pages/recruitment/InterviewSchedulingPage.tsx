@@ -128,6 +128,17 @@ export function InterviewSchedulingPage() {
     }
   }, [isLoading, loadingPhrases.length]);
 
+  // Effect to scroll to top when appointment is confirmed
+  useEffect(() => {
+    if (appointmentConfirmed) {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });
+    }
+  }, [appointmentConfirmed]);
+
   useEffect(() => {
     if (!eventId || !token) {
       toast.error({
