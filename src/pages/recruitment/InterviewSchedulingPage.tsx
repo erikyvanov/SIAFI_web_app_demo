@@ -682,7 +682,7 @@ export function InterviewSchedulingPage() {
               <div className="grid grid-cols-1 gap-3">
                 <div className="flex justify-between items-center py-2 border-b border-gray-200">
                   <span className="text-siafi-body text-gray-600 font-medium">
-                    Candidato:
+                    Nombre:
                   </span>
                   <span className="text-siafi-body text-gray-800">
                     {user.name} {user.lastname}
@@ -704,6 +704,14 @@ export function InterviewSchedulingPage() {
                   </span>
                   <span className="text-siafi-body text-gray-800">
                     {event.name}
+                  </span>
+                </div>
+                <div className="flex justify-between items-center py-2 border-b border-gray-200">
+                  <span className="text-siafi-body text-gray-600 font-medium">
+                    Lugar:
+                  </span>
+                  <span className="text-siafi-body text-gray-800">
+                    En línea, Google Meet
                   </span>
                 </div>
                 <div className="flex justify-between items-center py-2">
