@@ -674,7 +674,7 @@ export function InterviewSchedulingPage() {
                     Candidato:
                   </span>
                   <span className="text-siafi-body text-gray-800">
-                    {user?.name} {user?.lastname}
+                    {user.name} {user.lastname}
                   </span>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-gray-200">
@@ -682,7 +682,9 @@ export function InterviewSchedulingPage() {
                     Fecha y hora:
                   </span>
                   <span className="text-siafi-body text-gray-800 font-semibold">
-                    {formatConfirmedDateTime("2025-09-08 10:00:00")}
+                    {formatConfirmedDateTime(
+                      confirmedAppointment.date_and_time
+                    )}
                   </span>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-gray-200">
@@ -690,7 +692,7 @@ export function InterviewSchedulingPage() {
                     Evento:
                   </span>
                   <span className="text-siafi-body text-gray-800">
-                    {event?.name}
+                    {event.name}
                   </span>
                 </div>
                 <div className="flex justify-between items-center py-2">
@@ -891,37 +893,110 @@ export function InterviewSchedulingPage() {
           </h1>
           <p className="text-siafi-body text-gray-600 mb-6 w-full md:w-1/2 mx-auto">
             ¡Hola{" "}
-            <strong>
+            <b>
               {user.name} {user.lastname}
-            </strong>
+            </b>
             !
             <br />
-            Estamos muy contentos de que quieras formar parte de SIAFI.
+            Estamos muy contentos de que hayas pasado a la siguiente fase del
+            procesor de reclutamiento y quieras formar parte de SIAFI.
+            <br />
             <br />
             Por favor, selecciona la fecha y hora que mejor se acomoden a tu
             disponibilidad para tu entrevista de reclutamiento.
           </p>
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 max-w-2xl mx-auto">
-            <p className="text-siafi-body text-blue-800">
-              <strong>Evento:</strong> {event.name}
-            </p>
-            <p className="text-siafi-caption text-blue-600 mt-1">
-              Fechas disponibles:{" "}
-              {formatDateInMexicoCityTime(new Date(event.start_date), {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}{" "}
-              -{" "}
-              {formatDateInMexicoCityTime(new Date(event.end_date), {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </p>
-            <div className="text-siafi-caption text-blue-600 mt-1 flex items-center justify-center">
+          {/* Información del evento en formato tarjeta */}
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 max-w-3xl mx-auto shadow-sm">
+            <div className="flex items-start space-x-3">
+              <div className="flex-shrink-0">
+                <svg
+                  className="w-6 h-6 text-blue-600 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+              </div>
+              <div className="flex-1">
+                <h3 className="text-siafi-body text-blue-800 font-semibold mb-3">
+                  Información del evento
+                </h3>
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center">
+                    <span className="text-siafi-body text-blue-700 font-medium">
+                      Evento:
+                    </span>
+                    <span className="text-siafi-body text-blue-800 font-semibold">
+                      {event.name}
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-siafi-body text-blue-700 font-medium">
+                      Fechas disponibles:
+                    </span>
+                    <span className="text-siafi-caption text-blue-800">
+                      {formatDateInMexicoCityTime(new Date(event.start_date), {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}{" "}
+                      -{" "}
+                      {formatDateInMexicoCityTime(new Date(event.end_date), {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-siafi-body text-blue-700 font-medium">
+                      Duración:
+                    </span>
+                    <span className="text-siafi-caption text-blue-800">
+                      15-20 minutos
+                    </span>
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-blue-200">
+                    <div className="flex items-center justify-center text-siafi-caption text-blue-600">
+                      <svg
+                        className="w-4 h-4 mr-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                      <span className="font-bold">
+                        Todos los horarios en hora de la Ciudad de México (CDMX)
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Instrucciones mejoradas */}
+        <motion.div
+          className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-12 max-w-5xl mx-auto"
+          variants={itemVariants}
+        >
+          <div className="text-center mb-8">
+            <h2 className="text-siafi-h3 text-siafi-on-surface mb-3 flex items-center justify-center">
               <svg
-                className="w-4 h-4 mr-1"
+                className="w-6 h-6 mr-3 text-siafi-primary"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -930,69 +1005,99 @@ export function InterviewSchedulingPage() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
-                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                 />
               </svg>
-              <p>
-                Todos los horarios en{" "}
-                <span className="font-bold">
-                  hora de la Ciudad de México (CDMX)
-                </span>
-              </p>
-            </div>
+              Cómo agendar tu entrevista
+            </h2>
+            <p className="text-siafi-body text-gray-600">
+              Sigue estos sencillos pasos para reservar tu cita
+            </p>
           </div>
-        </motion.div>
 
-        {/* Instructions */}
-        <motion.div
-          className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-12 max-w-4xl mx-auto"
-          variants={itemVariants}
-        >
-          <h2 className="text-siafi-h3 text-siafi-on-surface mb-6 text-center">
-            Instrucciones
-          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="flex items-start space-x-3">
-              <span className="text-2xl">1. </span>
-              <div>
-                <p className="text-siafi-body text-gray-800 font-medium">
-                  Selecciona una fecha disponible en el calendario.
-                </p>
-                <p className="text-siafi-caption text-gray-600">
-                  Las fechas activas aparecerán resaltadas.
-                </p>
+            <div className="bg-green-50 border border-green-200 rounded-lg p-5 shadow-sm">
+              <div className="flex items-start space-x-3">
+                <div className="flex-shrink-0">
+                  <div className="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center font-semibold">
+                    <b>1</b>
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-siafi-body text-gray-800 font-semibold mb-2 mt-1">
+                    <b>Selecciona una fecha</b>
+                  </h3>
+                  <p className="text-siafi-body text-gray-700 mb-2">
+                    Elige una fecha disponible en el calendario de la izquierda.
+                  </p>
+                  <p className="text-siafi-caption text-green-700">
+                    Las fechas activas aparecerán resaltadas en azul.
+                  </p>
+                </div>
               </div>
             </div>
 
-            <div className="flex items-start space-x-3">
-              <span className="text-2xl">2. </span>
-              <div>
-                <p className="text-siafi-body text-gray-800 font-medium">
-                  Elige un horario dentro de esa fecha.
-                </p>
-                <p className="text-siafi-caption text-gray-600">
-                  Cada entrevista tiene una duración aproximada de 15–20
-                  minutos.
-                </p>
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-5 shadow-sm">
+              <div className="flex items-start space-x-3">
+                <div className="flex-shrink-0">
+                  <div className="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-semibold">
+                    <b>2</b>
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-siafi-body text-gray-800 font-semibold mb-2 mt-1">
+                    <b>Elige un horario</b>
+                  </h3>
+                  <p className="text-siafi-body text-gray-700 mb-2">
+                    Selecciona el horario que mejor se acomode a tu
+                    disponibilidad.
+                  </p>
+                  <p className="text-siafi-caption text-blue-700">
+                    Duración aproximada: 15-20 minutos.
+                  </p>
+                </div>
               </div>
             </div>
 
-            <div className="flex items-start space-x-3">
-              <span className="text-2xl">3. </span>
-              <div>
-                <p className="text-siafi-body text-gray-800 font-medium">
-                  Haz clic en "Confirmar entrevista" para guardar tu lugar.
-                </p>
+            <div className="bg-purple-50 border border-purple-200 rounded-lg p-5 shadow-sm">
+              <div className="flex items-start space-x-3">
+                <div className="flex-shrink-0">
+                  <div className="w-8 h-8 bg-purple-500 text-white rounded-full flex items-center justify-center font-semibold">
+                    <b>3</b>
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-siafi-body text-gray-800 font-semibold mb-2 mt-1">
+                    <b>Confirma tu cita</b>
+                  </h3>
+                  <p className="text-siafi-body text-gray-700 mb-2">
+                    Haz clic en "Confirmar entrevista" para reservar tu lugar.
+                  </p>
+                  <p className="text-siafi-caption text-purple-700">
+                    Recibirás un correo de confirmación con todos los detalles.
+                  </p>
+                </div>
               </div>
             </div>
 
-            <div className="flex items-start space-x-3">
-              <span className="text-2xl">4. </span>
-              <div>
-                <p className="text-siafi-body text-gray-800 font-medium">
-                  ¡Prepárate para contarnos sobre ti, tus intereses y tus ganas
-                  de aprender!
-                </p>
+            <div className="bg-amber-50 border border-amber-200 rounded-lg p-5 shadow-sm">
+              <div className="flex items-start space-x-3">
+                <div className="flex-shrink-0">
+                  <div className="w-8 h-8 bg-amber-500 text-white rounded-full flex items-center justify-center font-semibold">
+                    <b>4</b>
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-siafi-body text-gray-800 font-semibold mb-2 mt-1">
+                    <b>¡Prepárate!</b>
+                  </h3>
+                  <p className="text-siafi-body text-gray-700 mb-2">
+                    Prepárate para contarnos sobre ti y tus proyectos.
+                  </p>
+                  <p className="text-siafi-caption text-amber-700">
+                    La entrevista es relajada, ¡solo queremos conocerte!
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -1002,7 +1107,7 @@ export function InterviewSchedulingPage() {
           className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-8"
           variants={itemVariants}
         >
-          {/* Calendar */}
+          {/* Calendario */}
           <motion.div variants={slideInVariants}>
             <h2 className="text-siafi-h3 text-siafi-on-surface mb-4">
               Selecciona una fecha
@@ -1016,7 +1121,7 @@ export function InterviewSchedulingPage() {
             />
           </motion.div>
 
-          {/* Schedules */}
+          {/* Horarios */}
           <motion.div variants={slideInVariants}>
             <h2 className="text-siafi-h3 text-siafi-on-surface mb-4">
               Selecciona un horario
@@ -1031,10 +1136,64 @@ export function InterviewSchedulingPage() {
                 isConfirming={isConfirming}
               />
             ) : (
-              <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-8 text-center">
-                <div className="text-gray-400 mb-4">
+              <div className="bg-gray-50 border border-gray-200 rounded-lg shadow-sm p-8 text-center">
+                <div className="flex items-center justify-center space-x-3 mb-4">
+                  <div className="text-gray-400">
+                    <svg
+                      className="h-12 w-12"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1}
+                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      />
+                    </svg>
+                  </div>
+                  <div className="text-gray-400">
+                    <svg
+                      className="h-8 w-8"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
+                    </svg>
+                  </div>
+                  <div className="text-gray-400">
+                    <svg
+                      className="h-12 w-12"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1}
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <h3 className="text-siafi-body text-gray-800 font-semibold mb-2">
+                  Selecciona una fecha primero
+                </h3>
+                <p className="text-siafi-body text-gray-600 mb-3">
+                  Elige una fecha disponible en el calendario para ver los
+                  horarios
+                </p>
+                <div className="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm">
                   <svg
-                    className="mx-auto h-12 w-12"
+                    className="w-4 h-4 mr-1"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -1042,20 +1201,18 @@ export function InterviewSchedulingPage() {
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      strokeWidth={1}
-                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      strokeWidth={2}
+                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                     />
                   </svg>
+                  Los horarios aparecerán aquí
                 </div>
-                <p className="text-siafi-body text-gray-600">
-                  Primero selecciona una fecha en el calendario
-                </p>
               </div>
             )}
           </motion.div>
         </motion.div>
 
-        {/* Back button */}
+        {/* Botón de regreso */}
         {/*
         <div className="text-center">
           <Button
