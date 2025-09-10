@@ -1,15 +1,16 @@
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import { WelcomePage } from "../pages/recruitment/WelcomePage";
-import { PersonalDataPage } from "../pages/recruitment/PersonalDataPage";
-import { PreferencesAndParticipationPage } from "../pages/recruitment/PreferencesAndParticipationPage";
-import { TechnicalSkillsPage } from "../pages/recruitment/TechnicalSkillsPage";
-import { ExperienceAndTrackRecordPage } from "../pages/recruitment/ExperienceAndTrackRecordPage";
-import { MotivationAndExpectationsPage } from "../pages/recruitment/MotivationAndExpectationsPage";
-import { ThankYouPage } from "../pages/recruitment/ThankYouPage";
+//import { WelcomePage } from "../pages/recruitment/WelcomePage";
+//import { PersonalDataPage } from "../pages/recruitment/PersonalDataPage";
+//import { PreferencesAndParticipationPage } from "../pages/recruitment/PreferencesAndParticipationPage";
+//import { TechnicalSkillsPage } from "../pages/recruitment/TechnicalSkillsPage";
+//import { ExperienceAndTrackRecordPage } from "../pages/recruitment/ExperienceAndTrackRecordPage";
+//import { MotivationAndExpectationsPage } from "../pages/recruitment/MotivationAndExpectationsPage";
+//import { ThankYouPage } from "../pages/recruitment/ThankYouPage";
 import { InterviewSchedulingPage } from "../pages/recruitment/InterviewSchedulingPage";
-import { RecruitmentLayout } from "../layouts/RecruitmentLayout"; 
+//import { RecruitmentLayout } from "../layouts/RecruitmentLayout"; 
 import { ScrollToTop } from "../utils/ScrollToTop";
+import { RecruitmentEnded } from "../pages/recruitment";
 import { PageTransition } from "../components/ui";
 
 function AnimatedRoutes() {
@@ -18,6 +19,8 @@ function AnimatedRoutes() {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
+        <Route path="/reclutamiento" element={<PageTransition><RecruitmentEnded /></PageTransition>} />
+        {/*
         <Route path="/reclutamiento" element={<WelcomePage />} />
 
         <Route element={<RecruitmentLayout />}>
@@ -28,6 +31,8 @@ function AnimatedRoutes() {
           <Route path="/reclutamiento/motivacion-y-expectativas" element={<PageTransition><MotivationAndExpectationsPage /></PageTransition>} />
         </Route>
         <Route path="/reclutamiento/gracias" element={<PageTransition><ThankYouPage /></PageTransition>} />
+        */}
+
         <Route path="/agendar-entrevista" element={<InterviewSchedulingPage />} />
         
         <Route path="*" element={<Navigate to="/reclutamiento" replace />} />
