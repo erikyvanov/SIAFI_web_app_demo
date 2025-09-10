@@ -552,7 +552,7 @@ export function InterviewSchedulingPage() {
                   key={currentPhraseIndex}
                   className="text-2xl text-gray-800 font-semibold px-6 py-3 rounded-lg bg-white/70 backdrop-blur-sm border border-white/40 shadow-lg"
                 >
-                  Por favor, ingresa de nuevo con el enlace enviado a tu correo.
+                  Si aún no realizaste tu registro, por favor, ingresa de nuevo con el enlace enviado a tu correo.
                 </h2>
               ) : (
                 <h2
