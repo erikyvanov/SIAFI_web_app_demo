@@ -188,10 +188,6 @@ export function RecruitmentEnded() {
           </div>
         </div>
 
-        {/* Subtle message */}
-        <div className="text-gray-500 text-sm font-light">
-          Configurando tu experiencia personalizada...
-        </div>
       </div>
     </div>
   );

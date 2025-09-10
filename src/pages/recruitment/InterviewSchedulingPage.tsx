@@ -547,35 +547,50 @@ export function InterviewSchedulingPage() {
           {/* Phrases with animation */}
           <div className="h-20 flex items-center justify-center mb-8">
             <div className="relative">
-              <h2
-                key={currentPhraseIndex}
-                className="text-2xl text-gray-800 font-semibold px-6 py-3 rounded-lg bg-white/70 backdrop-blur-sm border border-white/40 shadow-lg animate-fade-in"
-              >
-                {loadingPhrases[currentPhraseIndex]}
-              </h2>
+              {!eventId && !token ? (
+                <h2
+                  key={currentPhraseIndex}
+                  className="text-2xl text-gray-800 font-semibold px-6 py-3 rounded-lg bg-white/70 backdrop-blur-sm border border-white/40 shadow-lg"
+                >
+                  Por favor, ingresa de nuevo con el enlace enviado a tu correo.
+                </h2>
+              ) : (
+                <h2
+                  key={currentPhraseIndex}
+                  className="text-2xl text-gray-800 font-semibold px-6 py-3 rounded-lg bg-white/70 backdrop-blur-sm border border-white/40 shadow-lg animate-fade-in"
+                >
+                  {loadingPhrases[currentPhraseIndex]}
+                </h2>
+              )}
               {/* Phrase progress indicator */}
               <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-gradient-to-r from-siafi-primary to-siafi-accent rounded-full"></div>
             </div>
           </div>
 
-          {/* Progress indicators */}
-          <div className="flex justify-center space-x-3 mb-8">
-            {loadingPhrases.map((_, index) => (
-              <div
-                key={index}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === currentPhraseIndex
-                    ? "bg-siafi-primary scale-125"
-                    : "bg-gray-300"
-                }`}
-              ></div>
-            ))}
-          </div>
+          {!eventId && !token ? (
+            <></>
+          ) : (
+            <>
+              {/* Progress indicators */}
+              <div className="flex justify-center space-x-3 mb-8">
+                {loadingPhrases.map((_, index) => (
+                  <div
+                    key={index}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      index === currentPhraseIndex
+                        ? "bg-siafi-primary scale-125"
+                        : "bg-gray-300"
+                    }`}
+                  ></div>
+                ))}
+              </div>
 
-          {/* Subtle message */}
-          <div className="text-gray-500 text-sm font-light">
-            Configurando tu experiencia personalizada...
-          </div>
+              {/* Subtle message */}
+              <div className="text-gray-500 text-sm font-light">
+                Configurando tu experiencia personalizada...
+              </div>
+            </>
+          )}
         </div>
       </div>
     );
