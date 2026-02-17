@@ -66,7 +66,7 @@ export const TimeSlots: React.FC<TimeSlotsProps> = ({
   }
 
   return (
-    <div className={`bg-white rounded-lg border border-gray-200 shadow-sm ${className}`}>
+    <div className={`bg-white rounded-lg border border-gray-200 shadow-sm flex flex-col h-[26rem] ${className}`}>
       <div className="p-4 border-b border-gray-200">
         <h3 className="text-siafi-h4 text-siafi-on-surface mb-1">
           Horarios disponibles
@@ -82,7 +82,7 @@ export const TimeSlots: React.FC<TimeSlotsProps> = ({
         </p>
       </div>
 
-      <div className="p-4 space-y-3">
+      <div className="p-4 space-y-3 overflow-y-auto flex-1 min-h-0">
         {schedules.map((schedule) => (
           <button
             key={schedule.id}
@@ -127,20 +127,18 @@ export const TimeSlots: React.FC<TimeSlotsProps> = ({
         ))}
       </div>
 
-      {selectedScheduleId && (
-        <div className="p-4 border-t border-gray-200 bg-gray-50">
-          <Button
-            variant="primary"
-            fullWidth
-            onClick={onConfirm}
-            loading={isConfirming}
-            disabled={isConfirming}
-            className="text-lg font-semibold"
-          >
-            {isConfirming ? 'Agendando...' : 'Confirmar entrevista'}
-          </Button>
-        </div>
-      )}
+      <div className="p-4 border-t border-gray-200 bg-gray-50">
+        <Button
+          variant="primary"
+          fullWidth
+          onClick={onConfirm}
+          loading={isConfirming}
+          disabled={isConfirming || !selectedScheduleId}
+          className="text-lg font-semibold"
+        >
+          {isConfirming ? 'Agendando...' : 'Confirmar entrevista'}
+        </Button>
+      </div>
     </div>
   );
 };
